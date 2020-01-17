@@ -31,6 +31,10 @@ Vagrant.configure("2") do |config|
                 ansible.extra_vars = {
                     node_ip: "192.168.33.#{i + 20}",
                 }
+                node.vm.provider :virtualbox do |v|
+                    v.customize ["modifyvm", :id, "--memory", 512]
+                    v.customize ["modifyvm", :id, "--cpus", 1]
+                end
             end
         end
     end
